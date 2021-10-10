@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+
+}
+
+group 'com.itrex.java.lab'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task dev(type: Copy) {
+    from "${buildDir}/libs"
+    into "${buildDir}/dev"
+    dev.dependsOn jar
+
+}
+
+task stable(type: Copy) {
+    from "${buildDir}/libs"
+    into "${buildDir}/stable"
+    stable.dependsOn jar
+}
+
+
+
+
+
+
